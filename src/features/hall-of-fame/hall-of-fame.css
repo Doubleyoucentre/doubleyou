@@ -1,5 +1,6 @@
 /* Confirmed Hall of Fame green; existing company navy/gold/surface tokens remain authoritative. */
-.hall-entry {--hall-green:#0b7a2e;--hall-green-dark:#064e2b;--hall-green-soft:#e7f4ec;padding-top:6rem;color:var(--color-navy);background:var(--color-warm-white)}
+.hall-entry,.hall-promo {--hall-green:#0b7a2e;--hall-green-dark:#064e2b;--hall-green-soft:#e7f4ec}
+.hall-entry {padding-top:6rem;color:var(--color-navy);background:var(--color-warm-white)}
 .hall-entry__hero {display:grid;gap:2.5rem;max-width:72rem;margin:auto;padding:3rem 1.25rem 4rem;align-items:center}
 .hall-entry__eyebrow {font-size:.75rem;font-weight:750;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
 .hall-entry h1 {font-size:clamp(3rem,10vw,6rem);font-weight:900;line-height:.9;letter-spacing:-.06em;text-transform:uppercase;color:var(--hall-green-dark);margin:0}
@@ -15,3 +16,10 @@
 .hall-entry__recognition {background:var(--hall-green-soft);padding:3rem 1.25rem;text-align:center}.hall-entry__recognition>p {max-width:42rem;margin:0 auto 1.5rem;line-height:1.7}.hall-entry :focus-visible {outline:3px solid var(--hall-green-dark);outline-offset:4px}
 @media(min-width:768px){.hall-entry__hero{grid-template-columns:1fr 1fr;padding-block:4rem 5rem}.hall-entry__intro{border-left:1px solid var(--color-off-white);padding-left:2rem}.hall-entry__journey>div{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.hall-entry{scroll-behavior:auto}}
+.hall-promo{background:var(--hall-green-soft);padding:3.5rem 1.25rem;color:var(--color-navy)}
+.hall-promo__inner{max-width:64rem;margin:auto;display:grid;gap:1.5rem;align-items:center}
+.hall-promo h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:850;line-height:1.15;letter-spacing:-.025em;margin-bottom:1rem}
+.hall-promo p:not(.hall-entry__eyebrow){max-width:38rem;line-height:1.7}
+.hall-promo__actions{display:flex;flex-direction:column;align-items:start;gap:.7rem}
+.hall-promo .hall-entry__action{text-align:center}.hall-promo :focus-visible{outline:3px solid var(--hall-green-dark);outline-offset:4px}
+@media(min-width:1024px){.hall-promo__inner{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:3rem}}

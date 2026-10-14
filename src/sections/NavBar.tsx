@@ -42,7 +42,7 @@ export default function Navbar() {
     align();
     const timer=setTimeout(stop,5000);
     return()=>{clearTimeout(timer);stop();window.removeEventListener('wheel',stop);window.removeEventListener('touchmove',stop);window.removeEventListener('keydown',keyStop)};
-  },[location.pathname,location.hash]);
+  },[location.pathname,location.hash,location.key]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);

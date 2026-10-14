@@ -3,6 +3,7 @@ import Footer from "./sections/Footer";
 import SEO from "./components/SEO";
 import Navbar from "./sections/NavBar";
 import BloodDrivePopup from "./components/BloodDrivePopup";
+import HallOfFameSection from './features/hall-of-fame/HallOfFameSection';
 
 // Eagerly loaded (above fold)
 const Hero = lazy(() => import("./sections/Hero"));
@@ -96,6 +97,8 @@ function App() {
         <Suspense fallback={<Loading />}>
           <PartnerSection />
         </Suspense>
+
+        <HallOfFameSection />
 
         <Suspense fallback={<Loading />}>
           <GiveSection />

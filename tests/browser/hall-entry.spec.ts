@@ -25,6 +25,13 @@ for(const width of [320,390,768,1280,1440]){
   await page.locator('footer').getByRole('link',{name:'Give',exact:true}).click();await expect(page).toHaveURL(/\/#give$/)
   await expect.poll(()=>page.locator('#give').evaluate(e=>Math.abs(e.getBoundingClientRect().top))).toBeLessThan(150)
   await page.locator('footer').getByRole('link',{name:'African Impact Hall of Fame',exact:true}).click();await expect(page).toHaveURL(/\/hall-of-fame$/)
+  await page.goto('/');const promo=page.getByRole('region',{name:'Your contribution belongs in the story.'})
+  await expect(promo).toBeVisible();await expect(page.locator('#give').getByText('Bank Transfer',{exact:true})).toBeVisible()
+  await expect(promo).not.toContainText(/sample|placeholder|development/i)
+  if(width===390||width===1440)await promo.screenshot({path:`.local-audit/design-qa/main-giving-entry-${width}.png`})
+  await promo.getByRole('link',{name:'View bank-transfer details'}).click();await expect(page).toHaveURL(/\/#give$/)
+  await expect.poll(()=>page.locator('#give').evaluate(e=>Math.abs(e.getBoundingClientRect().top))).toBeLessThan(150)
+  await promo.getByRole('link',{name:'Contribute through the Hall of Fame',exact:true}).click();await expect(page).toHaveURL(/\/hall-of-fame$/)
   expect(errors).toEqual([])
  })
 }
