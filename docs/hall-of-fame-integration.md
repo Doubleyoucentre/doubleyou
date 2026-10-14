@@ -1,6 +1,12 @@
 # Hall of Fame entry
 
-The native `/hall-of-fame` page is reachable from desktop/mobile navigation and Footer. It keeps the company shell and existing giving flow. No invented profiles, totals, programmes or payment-success claims.
+The native `/hall-of-fame` page is reachable from desktop/mobile navigation and Footer. It keeps the company shell and existing giving flow. The full concept presentation includes campaign hero artwork, five impact metrics, contributor portraits/search/categories, Africa map, stories and recognition guidance. No invented profiles, totals, programmes or payment-success claims.
+
+The map outline/projection is reused from the existing impact-map implementation (Pixie-Cooper). The contributor filters are reused from the existing contributor/search implementation (Minas-27). The shared public field contracts retain the Hall project's data model. Source attribution is retained; this is a native public presentation adapter, not a replacement backend or a transplant of payment/admin code.
+
+Optional `VITE_HALL_OF_FAME_PUBLIC_API` is an approved HTTPS public JSON endpoint using the existing `HallOfFameSnapshot` contract. Leave blank until that service is ready. Cross-origin hosting must permit this website through CORS; requests omit cookies and contain no API key. Only allowlisted public contributor fields, statistics, country aggregates and published stories are retained. Relative approved media URLs resolve against that service's origin. No private API, email, ownership token, provider transaction or payment reference is rendered. HTTP/JSON/schema failure shows retry; it never substitutes fixtures. Unconfigured/empty services show honest empty sections and unpublished metrics, with the Africa outline still visible. Country dots require actual published records.
+
+Published stories link to `/hall-of-fame/stories/:slug`; direct refresh and back-to-stories navigation work. Missing/withdrawn stories show an honest return path. Contributor photographs fall back to initials on errors, and optional money display uses amountMinor/currency. The campaign illustration is decorative and does not identify a real contributor; see public/hall-of-fame/README.md. Test-only populated snapshots and images are confined to tests, never default application data.
 
 The homepage also has a prominent Hall of Fame entry directly before the existing bank-transfer giving section. Both giving choices remain easy to find; existing account numbers, names and instructions are unchanged. The new entry links to `/hall-of-fame` and separately to `/#give`. Repeating the same root hash also repositions the target below the fixed header.
 

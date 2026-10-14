@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test'
 import {mkdir} from 'node:fs/promises'
-test.beforeEach(async({context,baseURL})=>{await context.route('**/*',route=>new URL(route.request().url()).origin===baseURL?route.continue():route.abort())})
+test.beforeEach(async({context,baseURL})=>{await context.route('**/*',route=>route.request().url()==='https://published.example.test/api/hall-of-fame'?route.fulfill({json:{source:'awaiting-verified-data',contributors:[],statistics:[],countries:[],stories:[]}}):new URL(route.request().url()).origin===baseURL?route.continue():route.abort())})
 for(const width of [320,390,768,1280,1440]){
  test(`native main-site Hall entry, mobile navigation and existing giving at ${width}px`,async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.setViewportSize({width,height:1000})
