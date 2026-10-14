@@ -1,8 +1,6 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) section.scrollIntoView({ behavior: "smooth" });
-  };
 
   const navLinks = [
     { label: "About", id: "about-us" },
@@ -55,14 +53,15 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
+                  <Link
+                    to={`/#${link.id}`}
                     className="text-white/50 hover:text-[#F7C928] text-sm transition-colors"
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
+              <li><a href="/hall-of-fame" className="inline-flex min-h-11 items-center text-white/70 hover:text-white text-sm underline underline-offset-4">African Impact Hall of Fame</a></li>
             </ul>
           </div>
 
@@ -98,12 +97,12 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/30 text-xs">
             © 2026{" "}
-            <button
-              onClick={() => scrollToSection("hero")}
+            <Link
+              to="/#home"
               className="underline hover:text-white/50 transition-colors"
             >
               Doubleyou Centre
-            </button>
+            </Link>
             . All Rights Reserved.
           </p>
           <p className="text-white/20 text-xs">

@@ -7,8 +7,10 @@ import GlobalInternships from "./pages/GlobalInternships.tsx";
 import QuestQuiz from "./pages/QuestQuiz.tsx";
 import InternPortal from "./pages/InternPortal.tsx";
 import AfricanStudentImpactProgram from "./pages/AfricanStudentImpactProgram.tsx";
+import HallOfFamePage from './features/hall-of-fame/HallOfFamePage.tsx';
 
 const router = createBrowserRouter([
+  {path:'/hall-of-fame',element:<HallOfFamePage/>},
   {
     path: "/",
     element: <App />,

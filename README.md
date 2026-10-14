@@ -2,6 +2,8 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+The native Hall of Fame entry is `/hall-of-fame`; see [integration setup](docs/hall-of-fame-integration.md). Existing giving remains available until the separate contribution release is accepted. Entry delivered by JeremiahAlayo with CyberEdify (https://github.com/CyberEdify), alongside Doubleyou Centre.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh

@@ -1,5 +1,6 @@
 ﻿import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useRef } from 'react';
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -16,6 +17,32 @@ export default function Navbar() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButton=useRef<HTMLButtonElement>(null);
+  useEffect(()=>{
+    if(location.pathname!=='/'||!/^#[a-z0-9-]+$/.test(location.hash))return;
+    // Lazy sections and images above the target can move it after it first mounts.
+    // Follow layout changes briefly, but let intentional visitor scrolling take over.
+    let frame=0;
+    const align=()=>{
+      cancelAnimationFrame(frame);
+      frame=requestAnimationFrame(()=>{
+        const section=document.getElementById(location.hash.slice(1));
+        if(section)window.scrollTo({top:Math.max(0,window.scrollY+section.getBoundingClientRect().top-96),behavior:'instant'});
+      });
+    };
+    const observer=new MutationObserver(align);
+    const resize=new ResizeObserver(align);
+    observer.observe(document.body,{childList:true,subtree:true});
+    resize.observe(document.body);
+    const stop=()=>{observer.disconnect();resize.disconnect();cancelAnimationFrame(frame)};
+    window.addEventListener('wheel',stop,{passive:true});
+    window.addEventListener('touchmove',stop,{passive:true});
+    const keyStop=(event:KeyboardEvent)=>{if(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].includes(event.key))stop()};
+    window.addEventListener('keydown',keyStop);
+    align();
+    const timer=setTimeout(stop,5000);
+    return()=>{clearTimeout(timer);stop();window.removeEventListener('wheel',stop);window.removeEventListener('touchmove',stop);window.removeEventListener('keydown',keyStop)};
+  },[location.pathname,location.hash]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -67,7 +94,7 @@ export default function Navbar() {
               />
             </a>
 
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-5">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
@@ -78,6 +105,7 @@ export default function Navbar() {
                   <span className="absolute left-0 -bottom-0.5 w-0 h-0.5 bg-[#F7C928] transition-all duration-300 group-hover:w-full rounded-full" />
                 </button>
               ))}
+              <Link to="/hall-of-fame" className="inline-flex min-h-11 items-center text-[15px] font-semibold text-gray-700 hover:underline">Hall of Fame</Link>
               <button
                 onClick={handleProgramNavigate}
                 className="relative text-[15px] font-medium text-gray-700 hover:text-[#0E1B2E] transition-colors duration-200 group"
@@ -87,7 +115,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-3">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -99,9 +127,13 @@ export default function Navbar() {
             </div>
 
             <button
-              className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition"
+              ref={menuButton}
+              className="lg:hidden min-h-11 min-w-11 p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition"
               onClick={() => setMenuOpen((o) => !o)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="site-mobile-navigation"
+              onKeyDown={e=>{if(e.key==='Escape')setMenuOpen(false)}}
             >
               {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -112,11 +144,13 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="site-mobile-navigation"
+            onKeyDown={e=>{if(e.key==='Escape'){setMenuOpen(false);menuButton.current?.focus()}}}
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "tween", duration: 0.28 }}
-            className="fixed inset-0 z-40 bg-[#0E1B2E] flex flex-col px-6 pt-24 pb-10 md:hidden"
+            className="fixed inset-0 z-40 bg-[#0E1B2E] flex flex-col overflow-y-auto px-6 pt-24 pb-10 lg:hidden"
           >
             <nav className="flex flex-col gap-6">
               {navLinks.map((link, i) => (
@@ -131,6 +165,7 @@ export default function Navbar() {
                   {link.label}
                 </motion.button>
               ))}
+              <Link to="/hall-of-fame" onClick={()=>setMenuOpen(false)} className="flex min-h-11 items-center text-3xl font-bold text-white hover:underline">Hall of Fame</Link>
               <motion.button
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
