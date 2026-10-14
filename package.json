@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:hall-entry": "node --test tests/hall-of-fame-destination.test.ts",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@playwright/test": "1.64.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-helmet": "^6.1.11",
