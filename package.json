@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:hall-entry": "node --test tests/hall-of-fame-destination.test.ts",
+    "test:hall-entry": "node --test tests/hall-of-fame-destination.test.ts tests/hall-public-data.test.ts",
     "test:browser": "playwright test"
   },
   "dependencies": {

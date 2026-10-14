@@ -1,5 +1,6 @@
 ﻿import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
@@ -7,10 +8,12 @@ import GlobalInternships from "./pages/GlobalInternships.tsx";
 import QuestQuiz from "./pages/QuestQuiz.tsx";
 import InternPortal from "./pages/InternPortal.tsx";
 import AfricanStudentImpactProgram from "./pages/AfricanStudentImpactProgram.tsx";
-import HallOfFamePage from './features/hall-of-fame/HallOfFamePage.tsx';
+const HallOfFamePage = lazy(() => import('./features/hall-of-fame/HallOfFamePage.tsx'));
+const HallStoryPage = lazy(() => import('./features/hall-of-fame/HallStoryPage.tsx'));
 
 const router = createBrowserRouter([
-  {path:'/hall-of-fame',element:<HallOfFamePage/>},
+  {path:'/hall-of-fame',element:<Suspense fallback={<p role="status">Loading Hall of Fame…</p>}><HallOfFamePage/></Suspense>},
+  {path:'/hall-of-fame/stories/:slug',element:<Suspense fallback={<p role="status">Loading impact story…</p>}><HallStoryPage/></Suspense>},
   {
     path: "/",
     element: <App />,
