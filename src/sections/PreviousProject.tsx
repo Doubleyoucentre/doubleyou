@@ -5,7 +5,7 @@ const projects = [
   {
     year: "2026",
     title: "AFRICAN STUDENT IMPACT PROGRAM",
-    support: "A 16-week remote student program for undergraduates across Africa",
+    support: "A six-month remote student program for undergraduates across Africa. Applications are closed.",
     color: "bg-green-600",
     gradient: "from-green-600 to-yellow-400 text-[#0E1B2E]",
     link: "/african-student-impact-program",

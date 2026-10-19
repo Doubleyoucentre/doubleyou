@@ -11,16 +11,11 @@ import {
   Medal,
   Network,
   Palette,
-  Sparkles,
   Users,
 } from "lucide-react";
 import SEO from "../components/SEO";
 import Footer from "../sections/Footer";
 import Navbar from "../sections/NavBar";
-
-const APPLICATION_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSexspXmDF1F4tevz4gjRqpaMB-zgbJU-cqYG6qmxqa-KMVeWA/viewform";
-const EMBEDDED_FORM_URL = `${APPLICATION_FORM_URL}?embedded=true`;
 
 const tracks = [
   {
@@ -64,9 +59,9 @@ const benefits = [
 
 const quickFacts = [
   { label: "Mode", value: "Fully remote", icon: Globe2 },
-  { label: "Duration", value: "16 weeks", icon: Clock3 },
-  { label: "Starts", value: "August 2026", icon: CalendarDays },
-  { label: "Deadline", value: "7 August 2026", icon: Sparkles },
+  { label: "Duration", value: "Six months", icon: Clock3 },
+  { label: "Cohort", value: "August 2026", icon: CalendarDays },
+  { label: "Applications", value: "Closed", icon: CheckCircle2 },
 ];
 
 const fadeInUp = {
@@ -77,17 +72,12 @@ const fadeInUp = {
 const stagger = { show: { transition: { staggerChildren: 0.08 } } } as const;
 
 export default function AfricanStudentImpactProgram() {
-  const scrollToForm = () => {
-    document.getElementById("asip-form")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="min-h-screen bg-[#FAFAF8] text-[#0E1B2E]">
       <SEO
-        title="AFRICAN STUDENT IMPACT PROGRAM | Doubleyou"
-        description="Apply for the AFRICAN STUDENT IMPACT PROGRAM, a 16-week fully remote student program for undergraduates across Africa."
+        title="ASIP | Applications Closed | Doubleyou"
+        description="Applications for the AFRICAN STUDENT IMPACT PROGRAM are now closed. Explore the six-month fully remote student program for undergraduates across Africa."
         url="/african-student-impact-program"
-        image="/asip-2026-flyer.jpg"
         keywords={[
           "AFRICAN STUDENT IMPACT PROGRAM",
           "Doubleyou ASIP",
@@ -121,13 +111,13 @@ export default function AfricanStudentImpactProgram() {
                   variants={fadeInUp}
                   className="mt-4 max-w-4xl text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.95] tracking-tight"
                 >
-                  Applications are now open
+                  Applications are now closed
                 </motion.h1>
                 <motion.p
                   variants={fadeInUp}
                   className="mt-6 max-w-2xl text-base sm:text-lg text-white/82 leading-relaxed"
                 >
-                  A 16-week fully remote student program for undergraduates
+                  A six-month fully remote student program for undergraduates
                   across Africa to gain real project experience, leadership
                   exposure, mentorship, and career-building pathways.
                 </motion.p>
@@ -136,20 +126,17 @@ export default function AfricanStudentImpactProgram() {
                   className="mt-8 flex flex-col sm:flex-row gap-3"
                 >
                   <a
-                    href={APPLICATION_FORM_URL}
-                    target="_blank"
-                    rel="noreferrer"
+                    href="#asip-tracks"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[#F7C928] px-7 py-3.5 text-sm font-black text-[#0E1B2E] shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-yellow-300"
                   >
-                    Apply Now <ArrowRight className="h-4 w-4" />
+                    Explore program tracks <ArrowRight className="h-4 w-4" />
                   </a>
-                  <button
-                    type="button"
-                    onClick={scrollToForm}
+                  <a
+                    href="#asip-form"
                     className="inline-flex items-center justify-center rounded-full border border-white/35 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
                   >
-                    View embedded form
-                  </button>
+                    Application status
+                  </a>
                 </motion.div>
               </motion.div>
 
@@ -159,12 +146,23 @@ export default function AfricanStudentImpactProgram() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="relative"
               >
-                <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 p-2 shadow-2xl shadow-black/30 backdrop-blur">
-                  <img
-                    src="/asip-2026-flyer.jpg"
-                    alt="AFRICAN STUDENT IMPACT PROGRAM flyer"
-                    className="aspect-[4/5] w-full rounded-[1.5rem] object-cover"
-                  />
+                <div className="rounded-[2rem] border border-white/15 bg-white/10 p-8 sm:p-10 text-white shadow-2xl shadow-black/30 backdrop-blur">
+                  <GraduationCap className="h-12 w-12 text-[#F7C928]" />
+                  <p className="mt-6 text-xs font-black uppercase tracking-[0.18em] text-[#F7C928]">
+                    August 2026 cohort
+                  </p>
+                  <h2 className="mt-3 text-3xl font-black">Six months of student impact.</h2>
+                  <p className="mt-4 leading-relaxed text-white/80">
+                    Real projects, mentorship, and Pan-African collaboration,
+                    delivered fully remotely.
+                  </p>
+                  <div className="mt-8 rounded-2xl bg-[#F7C928] p-5 text-[#0E1B2E]">
+                    <p className="font-black">Applications closed</p>
+                    <p className="mt-2 text-sm leading-relaxed">
+                      The application deadline was 7 August 2026. We are no longer
+                      accepting applications for this cohort.
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -242,15 +240,16 @@ export default function AfricanStudentImpactProgram() {
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <p className="text-[#F7C928] text-xs font-black tracking-[0.22em] uppercase">
-                Who can apply
+                Who the program is for
               </p>
               <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">
-                Open to undergraduate students across Africa.
+                For undergraduate students across Africa.
               </h2>
               <p className="mt-5 text-gray-600 leading-relaxed">
                 This program is for students ready to gain hands-on experience
                 beyond the classroom and commit to a remote, project-based
-                student program starting in August 2026.
+                six-month student program. Applications for the August 2026
+                cohort are closed.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 {["No application fee", "Fully remote", "Africa-wide access"].map(
@@ -337,18 +336,17 @@ export default function AfricanStudentImpactProgram() {
           <div className="max-w-7xl mx-auto">
             <div className="max-w-3xl">
               <p className="text-[#F7C928] text-xs font-black tracking-[0.22em] uppercase">
-                Application timeline
+                Program timeline
               </p>
               <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">
-                From application to onboarding.
+                Key dates for the August 2026 cohort.
               </h2>
             </div>
-            <div className="mt-10 grid md:grid-cols-4 gap-4">
+            <div className="mt-10 grid md:grid-cols-3 gap-4">
               {[
-                ["Now", "Applications open", "Choose your track and complete the Google Form."],
-                ["7 August 2026", "Application deadline", "Submit your application by the deadline."],
-                ["Early August 2026", "Review and selection", "Shortlisted applicants will be contacted after review."],
-                ["August 2026", "Program begins", "Selected participants join onboarding and begin the 16-week program."],
+                ["7 August 2026", "Applications closed", "The application deadline has passed. New applications are no longer being accepted for this cohort."],
+                ["August 2026", "Cohort start", "The scheduled start for the August 2026 student cohort."],
+                ["Six months", "Program duration", "A fully remote program combining real projects, leadership experience, and mentorship."],
               ].map(([date, title, copy]) => (
                 <article
                   key={title}
@@ -368,36 +366,26 @@ export default function AfricanStudentImpactProgram() {
         </section>
 
         <section id="asip-form" className="bg-white px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.38fr_0.62fr] gap-8 items-start">
+          <div className="max-w-3xl mx-auto text-center">
             <div>
               <p className="text-[#0B9F6E] text-xs font-black tracking-[0.22em] uppercase">
-                Apply before 7 August 2026
+                August 2026 applications
               </p>
               <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">
-                Submit your application.
+                Applications are now closed.
               </h2>
               <p className="mt-5 text-gray-600 leading-relaxed">
-                Use an email address and WhatsApp number you check regularly.
-                If the embedded form does not load, open the official Google
-                Form directly.
+                The application deadline was 7 August 2026. We are no longer
+                accepting applications for this cohort. You can still explore
+                the program tracks and what participants gain from the
+                six-month experience.
               </p>
               <a
-                href={APPLICATION_FORM_URL}
-                target="_blank"
-                rel="noreferrer"
+                href="#asip-tracks"
                 className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#F7C928] px-6 py-3 text-sm font-black text-[#0E1B2E] transition hover:bg-yellow-300"
               >
-                Open Google Form <ArrowRight className="h-4 w-4" />
+                Explore program tracks <ArrowRight className="h-4 w-4" />
               </a>
-            </div>
-            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-              <iframe
-                title="AFRICAN STUDENT IMPACT PROGRAM application form"
-                src={EMBEDDED_FORM_URL}
-                className="h-[700px] w-full"
-              >
-                Loading...
-              </iframe>
             </div>
           </div>
         </section>
@@ -408,19 +396,18 @@ export default function AfricanStudentImpactProgram() {
               <div>
                 <Medal className="h-8 w-8" />
                 <h2 className="mt-4 text-3xl sm:text-4xl font-black tracking-tight">
-                  Ready to join Africa's next generation of student leaders?
+                  Building Africa's next generation of student leaders.
                 </h2>
                 <p className="mt-3 max-w-2xl text-[#0E1B2E]/75">
-                  Apply early and use contact details you check regularly.
+                  Applications for the August 2026 cohort are closed. Discover
+                  the skills and opportunities at the heart of the program.
                 </p>
               </div>
               <a
-                href={APPLICATION_FORM_URL}
-                target="_blank"
-                rel="noreferrer"
+                href="#asip-tracks"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0E1B2E] px-7 py-3.5 text-sm font-black text-white transition hover:bg-[#162438]"
               >
-                Apply Now <ArrowRight className="h-4 w-4" />
+                Explore program tracks <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
