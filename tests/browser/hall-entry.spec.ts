@@ -19,7 +19,8 @@ for(const width of [320,390,768,1280,1440]){
   await expect(page.locator('#site-mobile-navigation')).toHaveCount(0)
   if(width===390||width===1440){await mkdir('.local-audit/design-qa',{recursive:true});await page.screenshot({path:`.local-audit/design-qa/main-hall-${width}.png`,fullPage:true})}
   await page.reload();await expect(primary).toBeVisible();await primary.click();await expect(page).toHaveURL(/\/#give$/)
-  await expect(page.getByRole('heading',{name:'Help Us Build the Future'})).toBeVisible()
+  await expect(page.getByRole('heading',{name:'Join Us in Building the Future'})).toBeVisible()
+  const intro=page.getByRole('dialog',{name:/Be part of the story/});await expect(intro).toBeVisible();await intro.getByRole('button',{name:'Close impact introduction'}).click()
   await expect.poll(()=>page.locator('#give').evaluate(e=>Math.abs(e.getBoundingClientRect().top))).toBeLessThan(150)
   await page.goBack();await expect(page).toHaveURL(/\/hall-of-fame$/);await expect(primary).toBeVisible()
   await page.locator('footer').getByRole('link',{name:'Give',exact:true}).click();await expect(page).toHaveURL(/\/#give$/)

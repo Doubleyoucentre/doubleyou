@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import Footer from "./sections/Footer";
 import SEO from "./components/SEO";
 import Navbar from "./sections/NavBar";
-import BloodDrivePopup from "./components/BloodDrivePopup";
+import ImpactSupportPopup from "./components/ImpactSupportPopup";
 import HallOfFameSection from './features/hall-of-fame/HallOfFameSection';
 
 // Eagerly loaded (above fold)
@@ -31,7 +31,7 @@ const Loading = () => (
 function App() {
   return (
     <>
-      <BloodDrivePopup />
+      <ImpactSupportPopup />
       <SEO
         title="Doubleyou — Advancing Human Potential Across Africa"
         description="Doubleyou is a mission-driven institution building systems that expand access to knowledge, empower young people, and create pathways to opportunity through education, innovation, and community impact."
@@ -44,7 +44,7 @@ function App() {
           "Edtech",
           "Quest",
           "Labari Books",
-          "Campus Impact Fellows",
+          "African Student Impact Program (ASIP)",
           "Blood Drive",
           "Innovation Ecosystem",
           "Covenant University",
@@ -53,7 +53,7 @@ function App() {
       />
       <Navbar />
 
-      <main id="home">
+      <main id="home" className="overflow-x-clip">
         <Suspense fallback={<Loading />}>
           <Hero />
         </Suspense>

@@ -1,0 +1,21 @@
+.impact-support { position: fixed; inset: 0; margin: auto; width: min(680px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid #e5e7eb; border-radius: 24px; color: #0e1b2e; background: #fafaf8; box-shadow: 0 24px 80px #0004; overflow-y: auto; overscroll-behavior: contain; }
+.impact-support::backdrop { background: #0e1b2ebf; backdrop-filter: blur(5px); }
+.impact-support__close { position: absolute; z-index: 1; top: 12px; right: 12px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #ffffff50; color: white; background: #0e1b2e; cursor: pointer; }
+.impact-support__graphic { display: flex; align-items: center; gap: 20px; padding: 32px 72px 32px 32px; color: #f7c928; background: radial-gradient(ellipse at top left, #286746, #0e1b2e 80%); }
+.impact-support__graphic svg { flex-shrink: 0; }
+.impact-support__graphic span { color: #fff; font-size: 18px; line-height: 1.5; }
+.impact-support__graphic strong { color: #f7c928; }
+.impact-support__content { padding: 28px 32px 30px; }
+.impact-support__eyebrow { margin: 0 0 12px; color: #166534; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.impact-support h2 { margin: 0 0 16px; font-size: clamp(28px, 5vw, 38px); line-height: 1.12; font-weight: 900; letter-spacing: -.025em; }
+.impact-support__content > p:not([class]) { margin: 0; color: #4b5563; font-size: 15px; line-height: 1.7; }
+.impact-support__actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 24px; }
+.impact-support__actions a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 16px; border-radius: 14px; font-size: 14px; font-weight: 800; text-align: center; line-height: 1.5; text-decoration: none; }
+.impact-support__actions svg { flex-shrink: 0; }
+.impact-support__primary { background: #f7c928; color: #0e1b2e; }
+.impact-support__secondary { background: #0e1b2e; color: #fff; }
+.impact-support__actions a:hover { filter: brightness(.95); }
+.impact-support :focus-visible { outline: 3px solid #166534; outline-offset: 3px; }
+.impact-support__close:focus-visible { outline-color: #f7c928; }
+.impact-support__note { margin: 16px 0 0; font-size: 12px; line-height: 1.5; color: #4b5563; }
+@media (max-width: 380px) { .impact-support__content { padding: 24px 20px; } .impact-support__graphic { gap: 12px; padding: 24px 60px 24px 20px; } .impact-support__graphic span { font-size: 16px; } }

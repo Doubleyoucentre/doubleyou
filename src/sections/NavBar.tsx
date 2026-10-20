@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { label: "About", id: "about-us" },
   { label: "Ecosystem", id: "core-solutions" },
-  { label: "Fellows", id: "fellowship" },
   { label: "Partners", id: "partners" },
   { label: "Give", id: "give" },
 ];
@@ -110,7 +109,7 @@ export default function Navbar() {
                 onClick={handleProgramNavigate}
                 className="relative text-[15px] font-medium text-gray-700 hover:text-[#0E1B2E] transition-colors duration-200 group"
               >
-                ASIP 2026
+                ASIP
                 <span className="absolute left-0 -bottom-0.5 w-0 h-0.5 bg-[#F7C928] transition-all duration-300 group-hover:w-full rounded-full" />
               </button>
             </div>
@@ -173,7 +172,7 @@ export default function Navbar() {
                 onClick={handleProgramNavigate}
                 className="text-3xl font-bold text-white text-left hover:text-[#F7C928] transition-colors"
               >
-                ASIP 2026
+                ASIP
               </motion.button>
             </nav>
             <div className="mt-auto">
