@@ -5,11 +5,11 @@ const actions = [
     id: "join",
     icon: "🎓",
     title: "Join",
-    subtitle: "Be a Campus Impact Fellow",
+    subtitle: "Become an ASIP Fellow",
     description:
-      "Apply to our 6-month fellowship program and work on real edtech challenges alongside a passionate team.",
-    cta: "Apply Now",
-    href: "mailto:hello@doubleyou.com.ng?subject=Fellows Program Application",
+      "Explore the six-month African Student Impact Program and the real projects fellows contribute to. Applications for the August 2026 cohort are closed.",
+    cta: "Explore ASIP",
+    href: "/african-student-impact-program",
     color: "#16A34A",
     bgColor: "#F0FDF4",
     borderColor: "#86EFAC",
@@ -140,8 +140,8 @@ const FinalCTA = () => {
               <a
                 href={action.href}
                 onClick={(e) => handleClick(action, e)}
-                target={action.isScroll ? undefined : "_blank"}
-                rel={action.isScroll ? undefined : "noopener noreferrer"}
+                target={action.href.startsWith("mailto:") ? "_blank" : undefined}
+                rel={action.href.startsWith("mailto:") ? "noopener noreferrer" : undefined}
                 className="inline-flex items-center gap-2 text-sm font-bold px-5 py-3 rounded-full transition-colors text-white"
                 style={{ backgroundColor: action.color }}
               >

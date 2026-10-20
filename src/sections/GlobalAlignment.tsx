@@ -25,7 +25,7 @@ const sdgs = [
     number: "SDG 8",
     title: "Decent Work & Economic Growth",
     description:
-      "Our Campus Impact Fellows Program and internship ecosystem create real pathways to employment for young Africans.",
+      "Our African Student Impact Program (ASIP) and internship ecosystem create real pathways to employment for young Africans.",
     color: "#8E44AD",
     bgColor: "#FAF5FF",
     borderColor: "#D8B4FE",

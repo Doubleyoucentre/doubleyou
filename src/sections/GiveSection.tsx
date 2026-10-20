@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { supportPaymentLink } from "../lib/support-payment";
 
 const NAIRA_ACCOUNT = "1000555378";
 const USD_ACCOUNT = "5000153088";
 
 const GiveSection = () => {
+  const payment = supportPaymentLink(import.meta.env.VITE_SUPPORT_PAYMENT_URL);
   const [copiedType, setCopiedType] = useState<"NAIRA" | "USD" | null>(null);
 
   const handleCopy = async (account: string, type: "NAIRA" | "USD") => {
@@ -38,16 +41,16 @@ const GiveSection = () => {
             viewport={{ once: true }}
             className="mb-4"
           >
-            <span className="tag-chip">Support Our Work</span>
+            <span className="tag-chip">Be Part of Our Impact</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-black text-[#0E1B2E] mb-4"
+            className="mx-auto max-w-3xl text-3xl sm:text-4xl md:text-5xl leading-tight text-balance font-black text-[#0E1B2E] mb-4"
           >
-            Help Us Build the Future
+            Join Us in Building the Future
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -56,10 +59,14 @@ const GiveSection = () => {
             viewport={{ once: true }}
             className="text-gray-500 text-lg max-w-2xl mx-auto"
           >
-            Your support directly powers our education programs, blood drive
-            initiatives, and community impact work across Africa. Every
-            contribution counts.
+            Be part of the education, innovation and community impact we are
+            building across Africa. Choose how you would like to participate
+            and support the work.
           </motion.p>
+          <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+            <Link to="/hall-of-fame" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#0E1B2E] px-6 py-3 text-sm font-bold text-white">Explore the Hall of Fame <ArrowUpRight size={18} aria-hidden="true" /></Link>
+            {payment && <a href={payment.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#F7C928] px-6 py-3 text-sm font-bold text-[#0E1B2E]">Contribute via {payment.provider} <ArrowUpRight size={18} aria-hidden="true" /></a>}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -69,7 +76,7 @@ const GiveSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
             viewport={{ once: true }}
-            className="bg-[#0E1B2E] rounded-3xl p-8 text-white"
+            className="min-w-0 bg-[#0E1B2E] rounded-3xl p-5 sm:p-8 text-white"
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 rounded-xl bg-[#F7C928]/20 flex items-center justify-center">
@@ -101,7 +108,7 @@ const GiveSection = () => {
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl px-5 py-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
                       Naira Account
@@ -136,7 +143,7 @@ const GiveSection = () => {
               </div>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl px-5 py-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="text-white/40 text-xs uppercase tracking-widest mb-1">
                       USD Account
@@ -182,7 +189,7 @@ const GiveSection = () => {
               className="bg-[#F0FDF4] border border-[#86EFAC] rounded-3xl p-7 flex-1"
             >
               <h3 className="font-black text-[#0E1B2E] text-xl mb-4">
-                Your donation helps us:
+                Your support makes possible:
               </h3>
               <ul className="space-y-3">
                 {[

@@ -5,7 +5,7 @@ const Footer = () => {
   const navLinks = [
     { label: "About", id: "about-us" },
     { label: "Our Ecosystem", id: "core-solutions" },
-    { label: "Campus Fellows", id: "fellowship" },
+    { label: "ASIP", id: "fellowship", href: "/african-student-impact-program" },
     { label: "Blood Drive", id: "blood-drive" },
     { label: "Partners", id: "partners" },
     { label: "Give", id: "give" },
@@ -54,7 +54,7 @@ const Footer = () => {
               {navLinks.map((link) => (
                 <li key={link.id}>
                   <Link
-                    to={`/#${link.id}`}
+                    to={link.href || `/#${link.id}`}
                     className="text-white/50 hover:text-[#F7C928] text-sm transition-colors"
                   >
                     {link.label}

@@ -81,7 +81,7 @@ const FellowshipProgram = () => {
               className="mb-5"
             >
               <span className="inline-flex items-center gap-2 bg-[#F7C928]/15 border border-[#F7C928]/30 text-[#F7C928] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full">
-                Campus Impact Program
+                African Student Impact Program (ASIP)
               </span>
             </motion.div>
 
@@ -90,10 +90,10 @@ const FellowshipProgram = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black text-white leading-tight mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-6 text-balance"
             >
-              Campus Impact{" "}
-              <span className="text-[#F7C928]">Fellows Program</span>
+              African Student{" "}
+              <span className="text-[#F7C928]">Impact Program</span>
             </motion.h2>
 
             <motion.p
@@ -103,8 +103,8 @@ const FellowshipProgram = () => {
               viewport={{ once: true }}
               className="text-white/70 text-lg leading-relaxed mb-8"
             >
-              A 6-month fellowship that gives university students and young
-              professionals hands-on experience in edtech. Fellows work on
+              A six-month remote program that gives students across Africa
+              hands-on experience in edtech. Fellows work on
               real-world projects — from app development and storytelling to
               gamification and project management.
             </motion.p>
@@ -185,17 +185,17 @@ const FellowshipProgram = () => {
                 className="mt-8 bg-[#F7C928] rounded-2xl p-6"
               >
                 <p className="text-[#0E1B2E] font-bold text-lg mb-1">
-                  Universities Can Apply
+                  Explore the ASIP experience
                 </p>
                 <p className="text-[#0E1B2E]/70 text-sm mb-4">
-                  We welcome nominations from universities across Africa. Fellows
-                  work in teams to tackle real-world challenges in edtech.
+                  Discover the program tracks and opportunities for students
+                  across Africa. Applications for the August 2026 cohort are closed.
                 </p>
                 <a
-                  href="mailto:hello@doubleyou.com.ng?subject=Fellows Program Application"
+                  href="/african-student-impact-program"
                   className="inline-flex items-center gap-2 bg-[#0E1B2E] text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-[#162438] transition-colors"
                 >
-                  Apply Now
+                  View ASIP program
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>

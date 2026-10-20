@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
-
-const partners = [
-  { name: "JDI", full: "Jela's Development Initiatives", color: "#DC2626" },
-  { name: "LSBTS", full: "Lagos State Blood Transfusion Service", color: "#B91C1C" },
-  { name: "Haima", full: "Haima Health", color: "#EF4444" },
-];
+import { bloodPartners } from "../lib/blood-partners";
 
 const BloodDriveSection = () => {
   return (
@@ -89,7 +84,7 @@ const BloodDriveSection = () => {
               lack of blood in hospitals across the country.
             </motion.p>
 
-            {/* Partner logos */}
+            {/* Verified organisation names; no unverified logo artwork. */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -100,30 +95,17 @@ const BloodDriveSection = () => {
               <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-4">
                 Initiative Partners
               </p>
-              <div className="flex flex-wrap gap-3">
-                {partners.map((p) => (
-                  <div
-                    key={p.name}
-                    className="flex items-center gap-2 border rounded-xl px-4 py-2 bg-white shadow-sm"
+              <ul className="flex flex-wrap gap-3">
+                {bloodPartners.map((name) => (
+                  <li
+                    key={name}
+                    className="max-w-full min-w-0 border rounded-xl px-4 py-3 bg-white shadow-sm text-sm font-semibold text-[#0E1B2E]"
                     style={{ borderColor: "#FECACA" }}
                   >
-                    <div
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0"
-                      style={{ backgroundColor: p.color }}
-                    >
-                      {p.name[0]}
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-[#0E1B2E] leading-none">
-                        {p.name}
-                      </p>
-                      <p className="text-[10px] text-gray-400 leading-snug">
-                        {p.full}
-                      </p>
-                    </div>
-                  </div>
+                    {name}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </motion.div>
 
             <motion.div

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { BookOpen, Globe, HeartPulse } from "lucide-react";
+import { bloodPartners } from "../lib/blood-partners";
 
 const partnerCategories = [
   {
@@ -42,26 +43,7 @@ const partnerCategories = [
   {
     label: "Health & Social Impact",
     icon: <HeartPulse className="w-5 h-5" />,
-    partners: [
-      {
-        short: "JDI",
-        name: "Jela's Development Initiatives",
-        detail: "Blood Drive Partner",
-        color: "#DC2626",
-      },
-      {
-        short: "LSBTS",
-        name: "Lagos State Blood Transfusion Service",
-        detail: "Blood Drive Partner",
-        color: "#B91C1C",
-      },
-      {
-        short: "Haima",
-        name: "Haima Health",
-        detail: "Health Systems Partner",
-        color: "#EF4444",
-      },
-    ],
+    partners: bloodPartners.map(name => ({ name, detail: "Blood Drive Partner", short: "", color: "" })),
   },
 ];
 
@@ -113,7 +95,7 @@ const PartnerSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: ci * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm"
+              className="min-w-0 bg-white rounded-3xl border border-gray-100 p-5 sm:p-8 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-9 h-9 rounded-xl bg-[#EEF2F8] flex items-center justify-center text-[#0E1B2E]">
@@ -127,10 +109,10 @@ const PartnerSection = () => {
                 {category.partners.map((partner) => (
                   <div
                     key={partner.name}
-                    className="flex items-center gap-3 border rounded-2xl px-4 py-3 flex-1 min-w-[200px]"
+                    className="flex items-center gap-3 border rounded-2xl px-4 py-3 flex-1 basis-full sm:basis-[200px] min-w-0"
                     style={{ borderColor: "#E5E7EB" }}
                   >
-                    <div
+                    {partner.short && <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-black flex-shrink-0"
                       style={{
                         backgroundColor: partner.color,
@@ -138,8 +120,8 @@ const PartnerSection = () => {
                       }}
                     >
                       {partner.short}
-                    </div>
-                    <div>
+                    </div>}
+                    <div className="min-w-0">
                       <p className="font-semibold text-[#0E1B2E] text-sm leading-snug">
                         {partner.name}
                       </p>
