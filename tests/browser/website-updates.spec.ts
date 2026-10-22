@@ -82,7 +82,9 @@ for (const width of [320, 390, 768, 1024, 1440]) {
       await expect(page.getByRole('button', { name: 'Open menu', exact: true })).toHaveAttribute('aria-expanded', 'false');
     } else await page.getByRole('button', { name: 'ASIP', exact: true }).click();
     await expect(page).toHaveURL(/\/african-student-impact-program$/);
-    await page.locator('footer').getByRole('link', { name: 'ASIP', exact: true }).click();
+    await page.locator('footer').getByRole('link', { name: 'Programmes', exact: true }).click();
+    await expect(page).toHaveURL(/\/#fellowship$/);
+    await page.locator('#fellowship').getByRole('link', { name: 'View ASIP program' }).click();
     await expect(page).toHaveURL(/\/african-student-impact-program$/);
     await page.goto('/#final-cta');
     await page.locator('#final-cta').getByRole('link', { name: 'Explore ASIP', exact: true }).click();
