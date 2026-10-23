@@ -8,6 +8,15 @@ const footerLinks = [
   ['Contact', '/contact'], ['Privacy Policy', '/privacy-policy'],
   ['Terms & Conditions', '/terms-and-conditions'], ['Refund Policy', '/refund-policy'],
 ];
+const retainedFooterLinks = [
+  ['Our Ecosystem', '/#core-solutions'], ['ASIP', '/african-student-impact-program'],
+  ['Blood Drive', '/#blood-drive'], ['Give', '/#give'], ['African Impact Hall of Fame', '/hall-of-fame'],
+  ['Facebook', 'https://www.facebook.com/Doubleyouinitiative'],
+  ['Instagram', 'https://www.instagram.com/doubleyoucentre/'],
+  ['X (Twitter)', 'https://twitter.com/DoubleyouNGA'],
+  ['LinkedIn', 'https://www.linkedin.com/company/doubleyougroup/'],
+  ['hello@doubleyou.com.ng', 'mailto:hello@doubleyou.com.ng'],
+];
 
 test.beforeEach(async ({ context, baseURL }) => {
   // Live acceptance uses the real network; local checks isolate external dependencies.
@@ -75,13 +84,16 @@ for (const width of [320, 390, 768, 1024, 1440]) {
       }
       await expect(page.locator('main a[href="mailto:hello@doubleyou.com.ng"]').first()).toBeAttached();
       await expect(page.locator('main a[href="tel:+2348073705508"]')).toHaveCount(1);
-      for (const [name, href] of footerLinks) {
+      for (const [name, href] of [...footerLinks, ...retainedFooterLinks]) {
         const anchor = page.locator('footer').getByRole('link', { name, exact: true });
         await expect(anchor).toHaveCount(1);
         await expect(anchor).toHaveAttribute('href', href);
       }
       await page.locator('footer').scrollIntoViewIfNeeded();
       await expect(page.locator('footer')).toContainText('© 2026 Doubleyou Centre. All rights reserved.');
+      await expect(page.locator('footer')).toContainText('Est. 2019');
+      await expect(page.locator('footer')).toContainText('Advancing Human Potential Across Africa — through education, innovation, and community impact.');
+      await expect(page.locator('footer')).toContainText('Committed to Sustainable Development Goals');
       expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBe(false);
       expect(await page.locator('main').evaluate(element => [...element.querySelectorAll('h1,h2,p')].every(node => {
         const rect = node.getBoundingClientRect();
