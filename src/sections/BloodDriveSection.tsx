@@ -116,7 +116,7 @@ const BloodDriveSection = () => {
               className="flex flex-wrap gap-3"
             >
               <a
-                href="https://www.instagram.com/doubleyoucentre/"
+                href="https://www.instagram.com/doubleyoucenter?obrf=a3N4MHZhYXBnMWZn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-red-600 text-white text-sm font-bold px-6 py-3 rounded-full hover:bg-red-700 transition-colors"

@@ -15,7 +15,7 @@ const sdgs = [
     number: "SDG 4",
     title: "Quality Education",
     description:
-      "Quest and our fellowship programs expand access to equitable, inclusive, and lifelong learning opportunities.",
+      "Our fellowship programs expand access to equitable, inclusive, and lifelong learning opportunities.",
     color: "#C0392B",
     bgColor: "#FEF2F2",
     borderColor: "#FECACA",

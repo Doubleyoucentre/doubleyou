@@ -44,7 +44,7 @@ const SEO: React.FC<SEOProps> = ({
     areaServed: { "@type": "Place", name: "Africa" },
     sameAs: [
       "https://www.facebook.com/Doubleyouinitiative",
-      "https://www.instagram.com/doubleyoucentre/",
+      "https://www.instagram.com/doubleyoucenter?obrf=a3N4MHZhYXBnMWZn",
       "https://twitter.com/DoubleyouNGA",
       "https://www.linkedin.com/company/doubleyougroup/",
     ],

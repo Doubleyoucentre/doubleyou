@@ -12,7 +12,7 @@ const retainedFooterLinks = [
   ['Our Ecosystem', '/#core-solutions'], ['ASIP', '/african-student-impact-program'],
   ['Blood Drive', '/#blood-drive'], ['Give', '/#give'], ['African Impact Hall of Fame', '/hall-of-fame'],
   ['Facebook', 'https://www.facebook.com/Doubleyouinitiative'],
-  ['Instagram', 'https://www.instagram.com/doubleyoucentre/'],
+  ['Instagram', 'https://www.instagram.com/doubleyoucenter?obrf=a3N4MHZhYXBnMWZn'],
   ['X (Twitter)', 'https://twitter.com/DoubleyouNGA'],
   ['LinkedIn', 'https://www.linkedin.com/company/doubleyougroup/'],
   ['hello@doubleyou.com.ng', 'mailto:hello@doubleyou.com.ng'],

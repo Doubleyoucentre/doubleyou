@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "20,000+", label: "Learners Reached" },
-  { value: "3", label: "Partner Universities" },
-  { value: "5+", label: "Years of Impact" },
-  { value: "Lagos, Abuja,\nJos & Taraba", label: "States Activated" },
+  {
+    value: "9",
+    label: "African Countries",
+    detail: "Active ASIP fellows",
+    verifiedAt: "2026-10-24",
+    verifiedLabel: "24 October 2026",
+  },
 ];
 
 const fadeUp = {
@@ -98,9 +101,9 @@ function AboutUs() {
 
           </div>
 
-          {/* Right — stats grid */}
-          <div>
-            <div className="grid grid-cols-2 gap-5">
+          {/* Only verified, dated impact figures are published. */}
+          <div className="min-w-0">
+            <div className="grid gap-5" aria-label="Verified ASIP reach">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -109,12 +112,16 @@ function AboutUs() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="min-w-0 h-full bg-white border border-gray-100 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <p className="text-4xl md:text-5xl font-black text-[#0E1B2E] mb-1">
+                  <p className="text-3xl sm:text-4xl leading-tight font-black text-[#0E1B2E] mb-1">
                     {stat.value}
                   </p>
-                  <p className="text-sm text-gray-500 font-medium">{stat.label}</p>
+                  <p className="text-base leading-snug text-[#0E1B2E] font-semibold break-words">{stat.label}</p>
+                  <p className="text-sm leading-relaxed text-gray-600 mt-2">{stat.detail}</p>
+                  <p className="text-xs leading-relaxed text-gray-500 mt-1">
+                    Verified <time dateTime={stat.verifiedAt}>{stat.verifiedLabel}</time>
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -132,7 +139,7 @@ function AboutUs() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0 break-words">
                 <p className="text-sm font-bold text-[#0E1B2E] mb-0.5">Primary Hub</p>
                 <p className="text-sm text-gray-600">
                   Covenant University CUCRID Centre — Ota, Ogun State, Nigeria
