@@ -15,10 +15,6 @@ module.exports = {
           DEFAULT: '#F7C928',
           light: '#FEF9C3',
         },
-        quest: {
-          DEFAULT: '#DC2626',
-          light: '#FEF2F2',
-        },
         labari: {
           DEFAULT: '#16A34A',
           light: '#F0FDF4',
