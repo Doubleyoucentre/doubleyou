@@ -1,11 +1,10 @@
 ﻿import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
 import GlobalInternships from "./pages/GlobalInternships.tsx";
-import QuestQuiz from "./pages/QuestQuiz.tsx";
 import InternPortal from "./pages/InternPortal.tsx";
 import AfricanStudentImpactProgram from "./pages/AfricanStudentImpactProgram.tsx";
 const HallOfFamePage = lazy(() => import('./features/hall-of-fame/HallOfFamePage.tsx'));
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/quest-quiz",
-    element: <QuestQuiz />,
+    element: <Navigate to="/#core-solutions" replace />,
   },
   {
     path: "/intern-portal",

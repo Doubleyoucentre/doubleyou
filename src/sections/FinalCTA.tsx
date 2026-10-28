@@ -165,7 +165,7 @@ const FinalCTA = () => {
           <p className="text-white/40 text-sm mb-4">Follow our journey</p>
           <div className="flex justify-center gap-6">
             {[
-              { label: "Instagram", href: "https://www.instagram.com/doubleyoucentre/" },
+              { label: "Instagram", href: "https://www.instagram.com/doubleyoucenter?obrf=a3N4MHZhYXBnMWZn" },
               { label: "LinkedIn", href: "https://www.linkedin.com/company/doubleyougroup/" },
               { label: "Facebook", href: "https://www.facebook.com/Doubleyouinitiative" },
               { label: "X (Twitter)", href: "https://twitter.com/DoubleyouNGA" },

@@ -13,7 +13,7 @@ const navigation = [
 ];
 const socials = [
   { label: 'Facebook', href: 'https://www.facebook.com/Doubleyouinitiative' },
-  { label: 'Instagram', href: 'https://www.instagram.com/doubleyoucentre/' },
+  { label: 'Instagram', href: 'https://www.instagram.com/doubleyoucenter?obrf=a3N4MHZhYXBnMWZn' },
   { label: 'X (Twitter)', href: 'https://twitter.com/DoubleyouNGA' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/doubleyougroup/' },
 ];

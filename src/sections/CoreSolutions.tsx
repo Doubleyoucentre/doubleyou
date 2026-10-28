@@ -1,23 +1,7 @@
 import { motion } from "framer-motion";
-import gamepad from "../assets/Gamepad.svg";
 import book from "../assets/Book.svg";
 
 const products = [
-  {
-    id: "quest",
-    name: "Quest",
-    tagline: "Learn. Play. Earn.",
-    description:
-      "A gamified learning platform with quiz tournaments, streak-based rewards, and competitive challenges. Quest transforms education into an engaging adventure — making knowledge retention fun and measurable.",
-    icon: gamepad,
-    color: "#DC2626",
-    bgColor: "#FEF2F2",
-    borderColor: "#FECACA",
-    textColor: "#991B1B",
-    cta: null,
-    ctaLabel: "Under Maintenance",
-    maintenance: true,
-  },
   {
     id: "labari",
     name: "Labari Books",
@@ -31,7 +15,19 @@ const products = [
     textColor: "#15803D",
     cta: "https://labaribooks.com",
     ctaLabel: "Explore Labari →",
-    maintenance: false,
+  },
+  {
+    id: "glove",
+    name: "GLOVE",
+    tagline: "In development",
+    description: "GLOVE is in development.",
+    icon: null,
+    color: "#1B4FBF",
+    bgColor: "#EEF2F8",
+    borderColor: "#93C5FD",
+    textColor: "#1B4FBF",
+    cta: null,
+    ctaLabel: "Development in Progress",
   },
   {
     id: "innov",
@@ -46,7 +42,6 @@ const products = [
     textColor: "#B45309",
     cta: null,
     ctaLabel: "Coming Soon",
-    maintenance: false,
   },
 ];
 
@@ -93,14 +88,14 @@ const CoreSolutions = () => {
         {/* Product cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {products.map((product, i) => (
-            <motion.div
+            <motion.article
               key={product.id}
               initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: i * 0.12 }}
               viewport={{ once: true }}
               whileHover={{ y: -6, transition: { duration: 0.22 } }}
-              className="bg-white rounded-3xl border p-8 shadow-sm hover:shadow-lg transition-all flex flex-col"
+              className="min-w-0 bg-white rounded-3xl border p-6 lg:p-8 shadow-sm hover:shadow-lg transition-all flex flex-col"
               style={{ borderColor: product.borderColor }}
             >
               {/* Icon */}
@@ -110,6 +105,8 @@ const CoreSolutions = () => {
               >
                 {product.icon ? (
                   <img src={product.icon} alt={product.name} className="w-8 h-8" />
+                ) : product.id === "glove" ? (
+                  <span className="text-2xl font-black" style={{ color: product.color }} aria-hidden="true">G</span>
                 ) : (
                   <svg
                     className="w-7 h-7"
@@ -141,12 +138,7 @@ const CoreSolutions = () => {
               </div>
 
               {/* CTA */}
-              {product.maintenance ? (
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-400">
-                  <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  Under Maintenance
-                </div>
-              ) : product.cta ? (
+              {product.cta ? (
                 <a
                   href={product.cta}
                   target="_blank"
@@ -157,12 +149,12 @@ const CoreSolutions = () => {
                   {product.ctaLabel}
                 </a>
               ) : (
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-400">
-                  <div className="w-2 h-2 rounded-full bg-gray-300" />
+                <div className="flex items-start gap-2 text-sm font-medium text-gray-600">
+                  <div className="w-2 h-2 mt-1.5 shrink-0 rounded-full" style={{ backgroundColor: product.color }} />
                   {product.ctaLabel}
                 </div>
               )}
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
