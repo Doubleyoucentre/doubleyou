@@ -2,13 +2,14 @@ import { useEffect, useRef } from "react";
 import { ArrowUpRight, HeartHandshake, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supportPaymentLink } from "../lib/support-payment";
+import { supportPaymentUrl } from "../lib/public-support";
 import "./impact-support.css";
 
 const STORAGE_KEY = "doubleyouImpactPopupDismissed";
 
 export default function ImpactSupportPopup() {
   const dialog = useRef<HTMLDialogElement>(null);
-  const payment = supportPaymentLink(import.meta.env.VITE_SUPPORT_PAYMENT_URL);
+  const payment = supportPaymentLink(supportPaymentUrl(import.meta.env.VITE_SUPPORT_PAYMENT_URL));
 
   useEffect(() => {
     try {
