@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test'
 import { mkdir } from 'node:fs/promises'
+import { PNG } from 'pngjs'
+import jsQR from 'jsqr'
+import { PUBLIC_SUPPORT_PAYMENT_URL } from '../../src/lib/public-support'
 
-const destination = 'https://flutterwave.com/pay/TEST_ONLY'
+const destination = PUBLIC_SUPPORT_PAYMENT_URL
 for (const width of [320, 390, 768, 1024, 1440]) {
   test(`homepage popup and support section share the hosted link at ${width}px`, async ({ context, page, baseURL }) => {
     await page.setViewportSize({ width, height: 900 })
@@ -44,10 +47,8 @@ for (const width of [320, 390, 768, 1024, 1440]) {
     await page.goto('/hall-of-fame')
     const cta = page.getByRole('link', { name: 'Contribute Now', exact: true }).first()
     await expect(cta).toHaveAttribute('href', destination)
-    await expect(cta).toHaveAttribute('target', '_blank')
-    await expect(cta).toHaveAttribute('rel', 'noopener noreferrer')
-    await expect(cta).toHaveAttribute('referrerpolicy', 'no-referrer')
-    await expect(cta).toHaveAccessibleDescription(/Temporary contribution option.*choose your amount on Flutterwave.*new tab.*reviewed separately/)
+    await expect(cta).toHaveAttribute('aria-haspopup', 'dialog')
+    await expect(cta).toHaveAccessibleDescription(/Temporary contribution option.*scan the QR code.*choose your amount.*reviewed separately/)
     await cta.focus()
     expect(await cta.evaluate(element => getComputedStyle(element).outlineStyle)).not.toBe('none')
     expect(await cta.evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44)
@@ -56,14 +57,30 @@ for (const width of [320, 390, 768, 1024, 1440]) {
       await mkdir('.local-audit/hosted-contribution', { recursive: true })
       await page.screenshot({ path: `.local-audit/hosted-contribution/hall-${width}.png` })
     }
-    const popup = page.waitForEvent('popup')
     await page.keyboard.press('Enter')
+    const dialog = page.getByRole('dialog', { name: 'Contribute to African impact' })
+    await expect(dialog).toBeVisible()
+    await expect(dialog.getByRole('button', { name: 'Close contribution options' })).toBeFocused()
+    const qr = dialog.getByRole('img', { name: 'Scan to contribute through Flutterwave' })
+    const pixels = PNG.sync.read(await qr.screenshot())
+    expect(jsQR(new Uint8ClampedArray(pixels.data), pixels.width, pixels.height)?.data).toBe(destination)
+    const pay = dialog.getByRole('link', { name: 'Continue to Flutterwave' })
+    await expect(pay).toHaveAttribute('href', destination)
+    await expect(pay).toHaveAttribute('target', '_blank')
+    await expect(pay).toHaveAttribute('rel', 'noopener noreferrer')
+    await expect(pay).toHaveAttribute('referrerpolicy', 'no-referrer')
+    if (width === 390 || width === 1440) await page.screenshot({ path: `.local-audit/hosted-contribution/qr-${width}.png` })
+    const popup = page.waitForEvent('popup')
+    await pay.click()
     const checkout = await popup
     await checkout.waitForLoadState('domcontentloaded')
     await expect(checkout).toHaveURL(destination)
     expect(await checkout.evaluate(() => window.opener === null)).toBe(true)
     await expect(page).toHaveURL(/\/hall-of-fame$/)
     await checkout.close()
+    await page.keyboard.press('Escape')
+    await expect(dialog).not.toBeVisible()
+    await expect(cta).toBeFocused()
     await page.reload()
     await expect(cta).toHaveAttribute('href', destination)
     await expect(page.locator('#hall-recognition')).toContainText('Public recognition is optional')

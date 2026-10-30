@@ -1,5 +1,5 @@
 import { ArrowUpRight, Check, Heart, Search, Users, X } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import Navbar from '../../sections/NavBar'
 import Footer from '../../sections/Footer'
@@ -10,12 +10,18 @@ import { contributorFilters, filterContributors, type ContributorFilterId } from
 import { usePublicHall } from './usePublicHall'
 import { HallStatistics, HallImpactMap, HallStories, ContributorPortrait, PublicReadState } from './HallPublicSections'
 import './hall-of-fame.css'
+import ContributionDialog from './ContributionDialog'
 
 export default function HallOfFamePage() {
   const contribution = hallContribution(import.meta.env.VITE_HALL_OF_FAME_ORIGIN, import.meta.env.VITE_HALL_OF_FAME_READY, supportPaymentUrl(import.meta.env.VITE_SUPPORT_PAYMENT_URL))
   const contribute = contribution.href
   const temporary = contribution.kind === 'hosted'
-  const linkProps = temporary ? { target: '_blank', rel: 'noopener noreferrer', referrerPolicy: 'no-referrer' as const, 'aria-describedby': 'hall-contribution-method' } : {}
+  const dialog = useRef<HTMLDialogElement>(null)
+  const linkProps = temporary ? { target: '_blank', rel: 'noopener noreferrer', referrerPolicy: 'no-referrer' as const, 'aria-haspopup': 'dialog' as const, 'aria-controls': 'hall-contribution-dialog', 'aria-describedby': 'hall-contribution-method', onClick: (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || !dialog.current) return
+    event.preventDefault()
+    dialog.current.showModal()
+  } } : {}
   const resource = usePublicHall()
   const location = useLocation()
   useEffect(() => {
@@ -32,7 +38,7 @@ export default function HallOfFamePage() {
     <main className="hall-entry" id="hall-main" tabIndex={-1}>
       <section className="hall-entry__hero" aria-labelledby="hall-entry-title">
         <div className="hall-entry__copy"><p className="hall-entry__eyebrow">Doubleyou Centre</p><h1 id="hall-entry-title"><span>African</span><span>Impact</span><span className="hall-entry__title-small">Hall of <mark>Fame</mark></span></h1><p className="hall-entry__strapline">People building Africa</p>
-          <div className="hall-entry__intro"><p>A continental community celebrating everyone who supports African students, innovation and social impact.</p><p>Whether you give a small or large amount, you are part of the story.</p><a className="hall-entry__action" href={contribute} {...linkProps}><span aria-hidden="true"><ArrowUpRight size={19} /></span>Contribute Now</a><p className="hall-entry__caption" id="hall-contribution-method">{temporary ? 'Temporary contribution option: choose your amount on Flutterwave. Opens in a new tab. Recognition is reviewed separately.' : contribution.kind === 'integrated' ? 'Support African impact. Choose your recognition.' : 'Give through Doubleyou Centre’s existing contribution options.'}</p></div>
+          <div className="hall-entry__intro"><p>A continental community celebrating everyone who supports African students, innovation and social impact.</p><p>Whether you give a small or large amount, you are part of the story.</p><a className="hall-entry__action" href={contribute} {...linkProps}><span aria-hidden="true"><ArrowUpRight size={19} /></span>Contribute Now</a><p className="hall-entry__caption" id="hall-contribution-method">{temporary ? 'Temporary contribution option: scan the QR code or continue to Flutterwave and choose your amount. Recognition is reviewed separately.' : contribution.kind === 'integrated' ? 'Support African impact. Choose your recognition.' : 'Give through Doubleyou Centre’s existing contribution options.'}</p></div>
         </div>
         <figure className="hall-entry__artwork"><img src="/hall-of-fame/impact-hero.webp" alt="Campaign illustration of a young African woman looking ahead, with a green and gold silhouette of Africa." width={1536} height={1024} fetchPriority="high" /><figcaption>Small contributions.<br /><strong>Big possibilities.</strong></figcaption></figure>
       </section>
@@ -49,6 +55,6 @@ export default function HallOfFamePage() {
         <aside className="hall-entry__sidebar" aria-label="African impact and programme stories"><HallImpactMap countries={resource.data.countries} statistics={resource.data.statistics} status={resource.status} /><HallStories stories={resource.data.stories} status={resource.status} /></aside>
       </div>
       <section className="hall-entry__recognition" id="hall-recognition" aria-labelledby="hall-recognition-title"><div><p className="hall-entry__eyebrow">Your contribution. Our shared story.</p><h2 id="hall-recognition-title">Support the impact.<br />Choose your recognition.</h2><p>A verified contribution establishes eligibility. Public recognition is optional and follows your consent, profile completion and approval. Your email and payment details stay private.</p><a href={contribute} className="hall-entry__action" {...linkProps}><span aria-hidden="true"><ArrowUpRight size={19} /></span>{temporary ? 'Contribute Now' : 'Join the Hall of Fame'}</a></div><ol><li><span>01</span><div><h3>Support African impact</h3><p>Contribute towards students, innovation and social impact.</p></div></li><li><span>02</span><div><h3>Make recognition your own</h3><p>Choose whether to be recognised publicly or remain private.</p></div></li><li><span>03</span><div><h3>Become part of the story</h3><p>Approved public profiles join the Hall of Fame.</p></div></li></ol></section>
-    </main><Footer />
+    </main>{temporary && <ContributionDialog dialogRef={dialog} paymentUrl={contribute} />}<Footer />
   </>
 }
