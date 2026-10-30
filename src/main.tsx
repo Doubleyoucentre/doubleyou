@@ -7,6 +7,10 @@ import App from "./App.tsx";
 import GlobalInternships from "./pages/GlobalInternships.tsx";
 import InternPortal from "./pages/InternPortal.tsx";
 import AfricanStudentImpactProgram from "./pages/AfricanStudentImpactProgram.tsx";
+import RouteLoadError from './components/RouteLoadError.tsx';
+import { installAssetRecovery } from './lib/asset-recovery.ts';
+
+installAssetRecovery();
 const HallOfFamePage = lazy(() => import('./features/hall-of-fame/HallOfFamePage.tsx'));
 const HallStoryPage = lazy(() => import('./features/hall-of-fame/HallStoryPage.tsx'));
 const LegalPolicyPage = lazy(() => import('./pages/LegalPolicyPage.tsx'));
@@ -44,7 +48,7 @@ const router = createBrowserRouter([
     path: "/africa-internship-program-2026",
     element: <AfricanStudentImpactProgram />,
   },
-]);
+].map(route => ({ ...route, errorElement: <RouteLoadError /> })));
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
