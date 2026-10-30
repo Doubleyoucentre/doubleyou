@@ -2,11 +2,9 @@ import { motion } from "framer-motion";
 
 const stats = [
   {
-    value: "9",
+    value: "19",
     label: "African Countries",
-    detail: "Active ASIP fellows",
-    verifiedAt: "2026-10-24",
-    verifiedLabel: "24 October 2026",
+    detail: "Active ASIP fellows learning, collaborating and contributing to real projects across Africa.",
   },
 ];
 
@@ -119,9 +117,6 @@ function AboutUs() {
                   </p>
                   <p className="text-base leading-snug text-[#0E1B2E] font-semibold break-words">{stat.label}</p>
                   <p className="text-sm leading-relaxed text-gray-600 mt-2">{stat.detail}</p>
-                  <p className="text-xs leading-relaxed text-gray-500 mt-1">
-                    Verified <time dateTime={stat.verifiedAt}>{stat.verifiedLabel}</time>
-                  </p>
                 </motion.div>
               ))}
             </div>
