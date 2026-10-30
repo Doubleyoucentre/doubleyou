@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { Copy, Check, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { supportPaymentLink } from "../lib/support-payment";
+import { supportPaymentUrl } from "../lib/public-support";
 
 const NAIRA_ACCOUNT = "1000555378";
 const USD_ACCOUNT = "5000153088";
 
 const GiveSection = () => {
-  const payment = supportPaymentLink(import.meta.env.VITE_SUPPORT_PAYMENT_URL);
+  const payment = supportPaymentLink(supportPaymentUrl(import.meta.env.VITE_SUPPORT_PAYMENT_URL));
   const [copiedType, setCopiedType] = useState<"NAIRA" | "USD" | null>(null);
 
   const handleCopy = async (account: string, type: "NAIRA" | "USD") => {
